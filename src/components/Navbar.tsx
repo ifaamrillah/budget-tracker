@@ -54,7 +54,7 @@ const MobileNavbar = () => {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <div className="block border-separate bg-background md:hidden">
+    <div className="block border-b border-separate bg-background md:hidden">
       <nav className="container flex items-center justify-center px-4 gap-2">
         <Sheet open={isOpen} onOpenChange={setOpen}>
           <SheetTrigger asChild>
