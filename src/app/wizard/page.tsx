@@ -19,7 +19,7 @@ export default async function page() {
   if (!user) redirect("sign-in");
 
   return (
-    <div className="container flex max-w-2xl flex-col items-center justify-between gap-4 px-4">
+    <div className="container mx-auto flex max-w-2xl flex-col items-center justify-between gap-4 px-4 md:px-0">
       <div>
         <Logo />
       </div>

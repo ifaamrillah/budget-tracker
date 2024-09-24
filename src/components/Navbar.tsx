@@ -32,7 +32,7 @@ export default Navbar;
 const DesktopNavbar = () => {
   return (
     <div className="hidden border-separate border-b bg-background md:block">
-      <nav className="container flex items-center justify-between px-8">
+      <nav className="container mx-auto flex items-center justify-between">
         <div className="flex h-[80px] min-h-[60px] items-center gap-x-4">
           <Logo />
           <div className="flex h-full">
@@ -55,7 +55,7 @@ const MobileNavbar = () => {
 
   return (
     <div className="block border-b border-separate bg-background md:hidden">
-      <nav className="container flex items-center justify-center px-4 gap-2">
+      <nav className="container mx-auto flex items-center justify-center gap-2 px-4">
         <Sheet open={isOpen} onOpenChange={setOpen}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon">
