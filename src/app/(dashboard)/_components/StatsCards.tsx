@@ -8,9 +8,9 @@ import CountUp from "react-countup";
 
 import { GetBalanceStatsResponseType } from "@/app/api/stats/balance/route";
 
-import { DateToUTCDate, GetFormatterForCurrency } from "@/lib/helper";
 import SkeletonWrapper from "@/components/SkeletonWrapper";
 import { Card } from "@/components/ui/card";
+import { DateToUTCDate, GetFormatterForCurrency } from "@/lib/helper";
 
 interface Props {
   userSettings: UserSettings;
@@ -94,7 +94,7 @@ const StatCard = ({
   return (
     <Card className="flex h-24 w-full items-center gap-2 p-4">
       {icon}
-      <div className="flex flex-col items-center gap-0">
+      <div className="flex flex-col items-start gap-0">
         <p className="text-muted-foreground w-full">{title}</p>
         <CountUp
           preserveValue
