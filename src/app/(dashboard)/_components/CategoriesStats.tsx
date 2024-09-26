@@ -7,7 +7,7 @@ import { GetCategoriesStatsResponseType } from "@/app/api/stats/categories/route
 
 import SkeletonWrapper from "@/components/SkeletonWrapper";
 import { DateToUTCDate, GetFormatterForCurrency } from "@/lib/helper";
-import { TransactionType } from "@/lib/type";
+import { TransactionType } from "@/lib/types";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Progress } from "@/components/ui/progress";
