@@ -15,7 +15,7 @@ import { Menu } from "lucide-react";
 const items = [
   { label: "Dashboard", link: "/" },
   { label: "Transaction", link: "/transaction" },
-  { label: "Manage", link: "//manage" },
+  { label: "Manage", link: "/manage" },
 ];
 
 const Navbar = () => {

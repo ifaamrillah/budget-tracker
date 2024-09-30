@@ -40,10 +40,10 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { TransactionType } from "@/lib/type";
+import { TransactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import CategoryPicker from "./CategoryPicker";
 import { DateToUTCDate } from "@/lib/helper";
+import CategoryPicker from "./CategoryPicker";
 
 interface Props {
   trigger: ReactNode;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { ReactNode, useCallback, useState } from "react";
 import { useTheme } from "next-themes";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -42,15 +42,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { TransactionType } from "@/lib/type";
+import { TransactionType } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 interface Props {
   type: TransactionType;
   onSuccessCallback: (category: Category) => void;
+  trigger?: ReactNode;
 }
 
-const CreateCategoryDialog = ({ type, onSuccessCallback }: Props) => {
+const CreateCategoryDialog = ({ type, onSuccessCallback, trigger }: Props) => {
   const theme = useTheme();
   const queryClient = useQueryClient();
   const [isOpen, setOpen] = useState(false);
@@ -103,13 +104,17 @@ const CreateCategoryDialog = ({ type, onSuccessCallback }: Props) => {
   return (
     <Dialog open={isOpen} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button
-          variant="ghost"
-          className="flex border-separate items-center justify-start rounded-none border-b px-3 py-3 text-muted-foreground"
-        >
-          <PlusSquare className="mr-2 h-4 w-4" />
-          Create new
-        </Button>
+        {trigger ? (
+          trigger
+        ) : (
+          <Button
+            variant="ghost"
+            className="flex border-separate items-center justify-start rounded-none border-b px-3 py-3 text-muted-foreground"
+          >
+            <PlusSquare className="mr-2 h-4 w-4" />
+            Create new
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

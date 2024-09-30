@@ -20,7 +20,7 @@ export default async function page() {
   if (!userSettings) redirect("/wizard");
 
   return (
-    <div className="h-full bg-background px-4 md:px-0">
+    <div className="h-full bg-background px-4 md:px-0 pb-16">
       <div className="border-b bg-card">
         <div className="container mx-auto flex flex-wrap items-center justify-between gap-6 py-8 px-4 md:px-0">
           <p className="text-3xl font-bold">Hello, {user.firstName}! 👋</p>
