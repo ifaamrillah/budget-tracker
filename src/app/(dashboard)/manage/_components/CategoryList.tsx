@@ -1,3 +1,5 @@
+"use client";
+
 import { useQuery } from "@tanstack/react-query";
 import { PlusSquare, TrendingDown, TrendingUp } from "lucide-react";
 import { Category } from "@prisma/client";

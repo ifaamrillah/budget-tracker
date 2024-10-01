@@ -45,7 +45,7 @@ const History = ({ userSettings }: { userSettings: UserSettings }) => {
     historyDataQuery.data && historyDataQuery.data.length > 0;
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto space-y-6">
       <h2 className="mt-12 text-3xl font-bold">History</h2>
       <Card className="cl-span-12 mt-2 w-full">
         <CardHeader className="gap-2">
@@ -164,6 +164,7 @@ const History = ({ userSettings }: { userSettings: UserSettings }) => {
 
 export default History;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CustomTooltip = ({ active, payload, formatter }: any) => {
   if (!active || !payload || payload.length === 0) return null;
 

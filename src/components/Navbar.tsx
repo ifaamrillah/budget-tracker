@@ -14,7 +14,7 @@ import { Menu } from "lucide-react";
 
 const items = [
   { label: "Dashboard", link: "/" },
-  { label: "Transaction", link: "/transaction" },
+  { label: "Transactions", link: "/transactions" },
   { label: "Manage", link: "/manage" },
 ];
 

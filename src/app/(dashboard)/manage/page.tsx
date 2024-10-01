@@ -1,5 +1,3 @@
-"use client";
-
 import CurrencyCombobox from "@/components/CurrencyCombobox";
 import {
   Card,
