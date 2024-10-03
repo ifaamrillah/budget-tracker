@@ -13,6 +13,8 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+import { download, generateCsv, mkConfig } from "export-to-csv";
+import { Download } from "lucide-react";
 
 import { GetTransactionHistoryResponseType } from "@/app/api/transactions-history/route";
 
@@ -26,23 +28,23 @@ import {
 } from "@/components/ui/table";
 import SkeletonWrapper from "@/components/SkeletonWrapper";
 import { DataTableColumnHeader } from "@/components/datatable/ColumnHeader";
-import { DateToUTCDate } from "@/lib/helper";
-import { cn } from "@/lib/utils";
 import { DataTableFacetedFilter } from "@/components/datatable/FacetedFilter";
 import { DataTableViewOptions } from "@/components/datatable/ColumnToggle";
 import { Button } from "@/components/ui/button";
+import { TransactionHistoryRow } from "@/lib/types";
+import { DateToUTCDate } from "@/lib/helper";
+import { cn } from "@/lib/utils";
+import RowActions from "./RowActions";
 
 interface Props {
   from: Date;
   to: Date;
 }
 
-type TransactionHistoryRow = GetTransactionHistoryResponseType[0];
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const emptyData: any[] = [];
 
-export const columns: ColumnDef<TransactionHistoryRow>[] = [
+const columns: ColumnDef<TransactionHistoryRow>[] = [
   {
     accessorKey: "category",
     header: ({ column }) => (
@@ -109,7 +111,16 @@ export const columns: ColumnDef<TransactionHistoryRow>[] = [
       </p>
     ),
   },
+  {
+    id: "actions",
+    enableHiding: false,
+    cell: ({ row }) => <RowActions transaction={row.original} />,
+  },
 ];
+
+const csvConfig = mkConfig({
+  useKeysAsHeaders: true,
+});
 
 const TransactionTable = ({ from, to }: Props) => {
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -124,6 +135,13 @@ const TransactionTable = ({ from, to }: Props) => {
         )}&to=${DateToUTCDate(to)}`
       ).then((res) => res.json()),
   });
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleExportCSV = (data: any[]) => {
+    console.log(data);
+    const csv = generateCsv(csvConfig)(data);
+    download(csvConfig)(csv);
+  };
 
   const table = useReactTable({
     data: history.data || emptyData,
@@ -183,6 +201,25 @@ const TransactionTable = ({ from, to }: Props) => {
           )}
         </div>
         <div className="flex flex-wrap gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="ml-auto h-8 lg:flex"
+            onClick={() => {
+              const data = table.getFilteredRowModel().rows.map((row) => ({
+                category: row.original.category,
+                categoryIcon: row.original.categoryIcon,
+                description: row.original.description,
+                type: row.original.type,
+                formattedAmount: row.original.formattedAmount,
+                date: row.original.date,
+              }));
+
+              handleExportCSV(data);
+            }}
+          >
+            <Download className="mr-2 h-4 w-4" /> Export CSV
+          </Button>
           <DataTableViewOptions table={table} />
         </div>
       </div>
